@@ -9,9 +9,11 @@ Table of Contents
 *   [Resources](#resources)
 
 <a name = "introduction"/>
+
 ## Introduction
 
 <a name = "directory"/>
+
 ## Directory
 
 *   Data
@@ -23,6 +25,7 @@ Table of Contents
 *   Additional files
 
 <a name = "resources"/>
+
 ## Resources
 
 *   [Youtube API Documentation](https://developers.google.com/youtube/v3/getting-started)
