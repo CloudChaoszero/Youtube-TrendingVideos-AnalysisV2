@@ -2,14 +2,16 @@
 
 Table of Contents
 
-*   [Introduction](##Introduction)
+*   [Introduction](#introduction)
 
-*   [Directory](##Directory)
+*   [Directory](#directory)
 
-*   [Resources](##Resources)
+*   [Resources](#resources)
 
+<a name = "introduction"/>
 ## Introduction
 
+<a name = "directory"/>
 ## Directory
 
 *   Data
@@ -20,6 +22,7 @@ Table of Contents
 
 *   Additional files
 
+<a name = "resources"/>
 ## Resources
 
 *   [Youtube API Documentation](https://developers.google.com/youtube/v3/getting-started)
