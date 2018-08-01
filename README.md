@@ -1,6 +1,10 @@
 # Youtube Trending Video Analysis
 
-[TOC]
+Table of Contents
+
+[Introduction](##Introduction)
+[Directory](##Directory)
+[Resources](##Resources)
 
 ## Introduction
 
