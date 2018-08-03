@@ -10,13 +10,11 @@ from config import api_key
 
 
 
-regionCode_list = ["at","the","that","ch","cn","from","dk","is","be","fr","is",
-                   "mx","us","kr","nl","nz","jp","ru","vn","for"]
+regionCode_list = ["at","ch","cn","dk","is","be","fr","is",
+                   "mx","us","kr","nl","nz","jp","ru","vn"]
 
+#Get Video Ids for each Region Code
 urlRequest_regionCodeList_forVideoIDs = [f"https://www.googleapis.com/youtube/v3/videos?part=statistics&chart=mostPopular&regionCode={regCode.upper()}&maxResults=25&key="+ api_key for regCode in regionCode_list]
-
-#Get Video Ids
-urlRequest_forVideoIds = "https://www.googleapis.com/youtube/v3/videos?part=statistics&chart=mostPopular&regionCode=US&maxResults=25&key="+api_key
 
 def getAPIResponse(url_string):
     try:
@@ -30,27 +28,13 @@ def getVideoIds(response_object):
     listOf_trendingVideo_ids = [i["id"] for i in response["items"]]
     return(listOf_trendingVideo_ids)
 
-response_videoIDs_perRegCode = [getAPIResponse(urlReq) for urlReq in urlRequest_regionCodeList_forVideoIDs]
-trendingVideosList_perRegCode = [getVideoIds(response_video) for response_video in response_videoIDs_perRegCode]
-
-response_videoIDs = getAPIResponse(urlRequest_forVideoIds)
-trendingVideosList_YT = getVideoIds(response_videoIDs)
-
-print(trendingVideosList_YT)
-print(trendingVideosList_perRegCode)
-
-# Get Video Stats
-
-#// TODO: Take out following line if code works
-# url = f"https://www.googleapis.com/youtube/v3/videos?id={video_id}&key={api_key}&part=snippet,statistics"
-
 def acquireVideoInformation(videoID_list, apiKey, printout=None):
     video_stats_dict = {"Title":[],"PublishedAt":[],"ChannelID":[],"Description":[],"ChannelTitle":[],"CategoryId":[],\
               "ViewCount":[],"LikeCount":[],"DislikeCount":[],"FavoriteCount":[],"CommentCount":[]}
     for video_id in videoID_list:
         ressponse_videoInfo = requests.get(f"https://www.googleapis.com/youtube/v3/videos?id={video_id}&key={apiKey}&part=snippet,statistics").json()
         rest2_in = ressponse_videoInfo["items"][0]
-
+        print(rest2_in)
         video_stats_dict["Title"].append(rest2_in["snippet"]["title"])
         video_stats_dict["PublishedAt"].append(rest2_in["snippet"]["publishedAt"])
         video_stats_dict["ChannelID"].append(rest2_in["snippet"]["channelId"])
@@ -58,18 +42,35 @@ def acquireVideoInformation(videoID_list, apiKey, printout=None):
         video_stats_dict["ChannelTitle"].append(rest2_in["snippet"]["channelTitle"])
         video_stats_dict["CategoryId"].append(rest2_in["snippet"]["categoryId"])
         video_stats_dict["ViewCount"].append(rest2_in["statistics"]["viewCount"])
-        video_stats_dict["LikeCount"].append(rest2_in["statistics"]["likeCount"])
-        video_stats_dict["DislikeCount"].append(rest2_in["statistics"]["dislikeCount"])
+        try:
+            video_stats_dict["LikeCount"].append(rest2_in["statistics"]["likeCount"])
+        except:
+            video_stats_dict["LikeCount"].append(0)
+        try:
+            video_stats_dict["DislikeCount"].append(rest2_in["statistics"]["dislikeCount"])
+        except:
+            video_stats_dict["DislikeCount"].append(0)
         video_stats_dict["FavoriteCount"].append(rest2_in["statistics"]["favoriteCount"])
-        video_stats_dict["CommentCount"].append(rest2_in["statistics"]["commentCount"])
+        try:
+            video_stats_dict["CommentCount"].append(rest2_in["statistics"]["commentCount"])
+        except:
+            video_stats_dict["CommentCount"].append(0)
     if printout is True:
         print(video_stats_dict)
     else: 
         pass
     return(video_stats_dict)
 
-vidStats = acquireVideoInformation(trendingVideosList_YT, api_key, printout=True)
 
+trendingVideos_information = {}
+for i, response_video in enumerate(urlRequest_regionCodeList_forVideoIDs):
+    #trendingVideo list
+    capString = regionCode_list[i].upper()
+    trendingVideos_information[capString] = [getAPIResponse(response_video)]
+    #description of trending videos
+    getVids = getVideoIds(trendingVideos_information[capString][0])
+    trendingVideos_information[capString].append(getVids)
+    trendingVideos_information[capString].append(acquireVideoInformation(trendingVideos_information[capString][1], api_key, printout=True))
 
 #-----------------------------------------------------
 '''
@@ -89,16 +90,12 @@ def outputToDataFrame(information):
     Requirement: Input DataFrame object from pandas library
     '''
     return(DataFrame(information))
+for key, info in trendingVideos_information.items():
 
-vidStats_df= outputToDataFrame(vidStats)
-vidStats_df.to_csv(f"Data/YoutubeVideoStats-{month}{day}{year}.csv")
-
-
-print(json.dumps(video_stats, indent=4, sort_keys=False))
+    vidStats_df= outputToDataFrame(info[2])
+    vidStats_df.to_csv(f"Data/YoutubeVideoStats-{key}-{month}{day}{year}.csv")
 
 
 
-#Plan out rest of code
-
-
-## Do a sql alchemy version. ONce that is complete, then 
+#// TODO:  Do a sql alchemy version. Once that is complete, then 
+#// TODO: This is where we create database if it does not exist. If it does, just add new information
