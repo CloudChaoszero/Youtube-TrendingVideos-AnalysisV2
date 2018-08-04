@@ -29,12 +29,13 @@ def getVideoIds(response_object):
     return(listOf_trendingVideo_ids)
 
 def acquireVideoInformation(videoID_list, apiKey, printout=None):
-    video_stats_dict = {"Title":[],"PublishedAt":[],"ChannelID":[],"Description":[],"ChannelTitle":[],"CategoryId":[],\
+    video_stats_dict = {"VideoID": [], "Title":[],"PublishedAt":[],"ChannelID":[],"Description":[],"ChannelTitle":[],"CategoryId":[],\
               "ViewCount":[],"LikeCount":[],"DislikeCount":[],"FavoriteCount":[],"CommentCount":[]}
     for video_id in videoID_list:
-        ressponse_videoInfo = requests.get(f"https://www.googleapis.com/youtube/v3/videos?id={video_id}&key={apiKey}&part=snippet,statistics").json()
-        rest2_in = ressponse_videoInfo["items"][0]
-        print(rest2_in)
+        response_videoInfo = requests.get(f"https://www.googleapis.com/youtube/v3/videos?id={video_id}&key={apiKey}&part=snippet,statistics").json()
+        rest2_in = response_videoInfo["items"][0]
+        # print(rest2_in)
+        video_stats_dict["VideoID"].append(video_id)
         video_stats_dict["Title"].append(rest2_in["snippet"]["title"])
         video_stats_dict["PublishedAt"].append(rest2_in["snippet"]["publishedAt"])
         video_stats_dict["ChannelID"].append(rest2_in["snippet"]["channelId"])
@@ -85,17 +86,30 @@ month = str(now.month)
 day = str(now.day)
 
 
+
 def outputToDataFrame(information):
     '''
     Requirement: Input DataFrame object from pandas library
     '''
     return(DataFrame(information))
 for key, info in trendingVideos_information.items():
-
     vidStats_df= outputToDataFrame(info[2])
+    vidStats_df["RegionCode"] = [key.upper() for i in range(vidStats_df.shape[0])]
     vidStats_df.to_csv(f"Data/YoutubeVideoStats-{key}-{month}{day}{year}.csv")
 
 
 
 #// TODO:  Do a sql alchemy version. Once that is complete, then 
 #// TODO: This is where we create database if it does not exist. If it does, just add new information
+
+
+'''
+If I put this code in a sqlalchemy file, then code will run, and database will always be inputted.
+
+
+but if I make this seperate, and have one file call this file annnnd sqlalchemy file, then I can keep an app running
+
+
+For app:
+if some collection of files does not exist in repository, then run operations
+'''
