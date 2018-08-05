@@ -95,6 +95,7 @@ def outputToDataFrame(information):
 for key, info in trendingVideos_information.items():
     vidStats_df= outputToDataFrame(info[2])
     vidStats_df["RegionCode"] = [key.upper() for i in range(vidStats_df.shape[0])]
+    vidStats_df["Date"] = [f"{month}/{day}/{year}" for i in range(vidStats_df.shape[0])]
     vidStats_df.to_csv(f"Data/YoutubeVideoStats-{key}-{month}{day}{year}.csv")
 
 
