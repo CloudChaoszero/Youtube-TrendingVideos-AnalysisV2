@@ -14,7 +14,6 @@ Table of Contents
 
 <a name = "directory"/>
 
-![Introduction to Project](https://youtu.be/9pjeyUJ8104)
 
 ## Directory
 

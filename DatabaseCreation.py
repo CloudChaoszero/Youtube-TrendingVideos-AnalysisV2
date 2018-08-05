@@ -47,23 +47,32 @@ Session = sessionmaker(bind =engine)
 session = Session()
 
 
+
+'''
+For each file, get open a csv and add the information to the intermediate table.
+commit the file, and then go through to the next file
+'''
 import csv
+
+import os
 counter = 0
-with open('Data/YoutubeVideoStats-BE-832018.csv','r') as csvfile:
-    reader = csv.reader(csvfile, delimiter = ',')
-    for row in reader:
-        ytVids = ytVideoStats(id = counter, videoID=row[1], title = row[2], publishedAt=row[3],\
-        channelID = row[4], description = row[5],channelTitle=row[6], categoryId=row[7],\
-        viewCount=row[8],likeCount=row[9],dislikeCount=row[10],favoriteCount=row[11],commentCount=row[12])
-        # Instance is pending. No SQL has been issued to object. To persist our object,
-        # #we add it to our session 
-        session.add(ytVids)
-        counter +=1
-try:
-    session.commit()
-    print(session.query(ytVideoStats.videoID).all())
-except:
-    ytVideoStats.__table__.drop(engine)
-    print("Table was dropped due to duplicate IDs")
+for files in os.listdir("Data/"):
+
+    with open(f'Data/{files}','r') as csvfile:
+        reader = csv.reader(csvfile, delimiter = ',')
+        for row in reader:
+            ytVids = ytVideoStats(id = counter, videoID=row[1], title = row[2], publishedAt=row[3],\
+            channelID = row[4], description = row[5],channelTitle=row[6], categoryId=row[7],\
+            viewCount=row[8],likeCount=row[9],dislikeCount=row[10],favoriteCount=row[11],commentCount=row[12])
+            # Instance is pending. No SQL has been issued to object. To persist our object,
+            # #we add it to our session 
+            session.add(ytVids)
+            counter +=1
+    try:
+        session.commit()
+        print(session.query(ytVideoStats.videoID).all())
+    except:
+        ytVideoStats.__table__.drop(engine)
+        print("Table was dropped due to duplicate IDs")
 
 

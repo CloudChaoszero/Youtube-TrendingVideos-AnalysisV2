@@ -15,6 +15,9 @@ for files in os.listdir("Data/"):
     if "Date" not in list(df.columns):
 
         df["Date"] = [f"{month}/{day}/{year}" for i in range(df.shape[0])]
+
+    
+    df = df[df.columns.drop(list(df.filter(regex='Unnamed')))]
     df.to_csv(f"Data/{files}")
 
 if __name__=="__main__":
