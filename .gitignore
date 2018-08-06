@@ -1,3 +1,4 @@
 *ipynb 
 Data/*
-Resources/*
+Resources/__pycache__/*
+Resources/config.py
