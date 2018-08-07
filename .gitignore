@@ -2,3 +2,6 @@
 Data/*
 Resources/__pycache__/*
 Resources/config.py
+
+*.sqlite
+__pycache__
