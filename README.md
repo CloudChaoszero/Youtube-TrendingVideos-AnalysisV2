@@ -14,16 +14,22 @@ Table of Contents
 
 <a name = "directory"/>
 
+![Youtube Views](Resources/Images/youtube.jpg)
 
-## Directory
+## Recommended Directory
 
 *   Data
     * X number of .csv files outputted from python script
 
 *   Resources
-    * config python file
-
-*   Additional files
+    * config.py file
+    * templates
+    * Images
+*   database.sqlite
+*   LegacyData-Imputation.py
+*   README.md
+*   YoutubeAPI-Interaction.py
+*   ytAnalysis-app.py (Flask application)
 
 <a name = "resources"/>
 
