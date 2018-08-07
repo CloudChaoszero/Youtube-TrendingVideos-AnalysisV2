@@ -17,7 +17,6 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.orm import sessionmaker
 
-engine = create_engine('sqlite:///database.sqlite')
 Base = declarative_base()
 
 class ytVideoStats(Base):
@@ -38,7 +37,10 @@ class ytVideoStats(Base):
     def __repr__(self):
         return(f"<Youtube Video Information: Video Id: {self.videoID}, Title: {self.title}, Published At: {self.publishedAt},\
         Channel ID: {self.channelID}, Description: {self.description}, Channel Title: {self.channelTitle}, Category ID: {self.categoryId}")
+
+engine = create_engine('sqlite:///database.sqlite')
 ytVideoStats.__table__.drop(engine)
+
 #Session: ORM's "handle" to the database
 Base.metadata.create_all(engine, checkfirst=True)
 
