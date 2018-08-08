@@ -70,6 +70,10 @@ for files in os.listdir("Data/"):
             # #we add it to our session 
             session.add(ytVids)
             counter +=1
+    #Delete all headers from imputed csv data
+    session.query(ytVideoStats).filter(ytVideoStats.videoID == 'VideoID').delete()
+
+
     try:
         session.commit()
         print(session.query(ytVideoStats.videoID).all())
