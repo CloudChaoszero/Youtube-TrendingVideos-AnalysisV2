@@ -55,6 +55,7 @@ Enjoy!
 
 *   [Youtube API Documentation](https://developers.google.com/youtube/v3/getting-started)
 
+* [Flask: Quick Start](http://flask.pocoo.org/docs/0.12/quickstart/)
 
 Contact information:
 

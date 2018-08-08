@@ -5,52 +5,51 @@ from sqlalchemy import inspect
 from sqlalchemy.orm import Session
 
 Base = automap_base()
-engine = create_engine("sqlite:///database.sqlite", connect_args={'check_same_thread': False},echo=False)
+engine = create_engine("sqlite:///database.sqlite",
+                       connect_args={'check_same_thread': False}, echo=False)
 
-Base.prepare(engine, reflect = True)
-# print(inspect(engine).get_table_names())
+Base.prepare(engine, reflect=True)
+# print(inspect(engine).get_table_names()) #If I want to check out what table is available
 
 session = Session(engine)
 ytVideoStats = Base.classes.youtube_videoStats
 
-#Application instance
-app = Flask(__name__, template_folder = "Resources/templates")
+app = Flask(__name__, template_folder="Resources/templates")
+
 
 @app.route("/")
 def homepage():
     return("<h1>Welcome! :D </h1>")
 
-@app.route("/search", methods = ['Get','POST'])
+
+@app.route("/search", methods=['GET', 'POST'])
 def searchPage():
     if request.method == 'POST':
-        queryWord = request.form['text']
-        print("Query Word:", queryWord)
-        a = session.query(ytVideoStats.title).filter(ytVideoStats.title.like(f'%{queryWord}%')).all()
+        querySearchForm = request.form['text']
 
-        listt = [i for i in a]
-        print(listt)
-        return(render_template("index.html", aye = listt))
+        # // TODO: If all is well, take out test print statement from below
+        print("Query Word:", querySearchForm)
+
+        results = session.query(ytVideoStats).filter(
+            ytVideoStats.title.like(f'%{querySearchForm}%')).all()
+
+        results_list = [row.title for row in results]
+        # // TODO: If all is well, take out test print statement from below
+        print(results_list)
+        return(render_template("index.html", output=results_list))
     return(render_template("index.html"))
 
 
 @app.route("/query")
 def query():
-    
+
     # a = session.query(ytVideoStats).all()
     # listt = [i.videoID for i in a]
     # return(f"{listt}")
     return("das")
+
+@app.route("/password")
+def password():
+    return(render_template("rickroll.html"))
 if __name__ == "__main__":
     app.run()
-
-'''
-Want to be able to query video information by
-some video category, id, or something else
-through some submission html page
-'''
-
-'''
-Currently have ability to query video ids as a whole
-'''
-
-# http://flask.pocoo.org/docs/0.12/quickstart/

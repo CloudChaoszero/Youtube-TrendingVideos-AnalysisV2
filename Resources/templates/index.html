@@ -1,20 +1,31 @@
+<html>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
 <body>
 
+    <section>
+        <center><h1>Trending Videos Summary Table</h1></center>
+    <center><p>Observe the basic descriptive statistics of Trending Youtube videos.</p></center>
+    </section>
 
-    <form method='POST'>
-        <input name='text'>
-        <input type='submit'>
-    </form>
-
+    <div><center>
+        <form method='POST'>
+            <input name='text'>
+            <input type='submit'>
+        </form></center>
+        <div>
 
 </body>
 
-{% if aye %}
-  <h1>Hello {{ aye }}!</h1>
+{% if output %} {% for entry in output %}
+<ul>
+    <li>{{entry }} </li>
+</ul>
+{% endfor %}
+
 {% else %}
-  <h1>Hello, World!</h1>
+<h1>Sorry, looks like that is not a keyword!</h1>
 {% endif %}
-<!-->http://flask.pocoo.org/docs/1.0/quickstart/#accessing-request-data<-->
+
+</html>
