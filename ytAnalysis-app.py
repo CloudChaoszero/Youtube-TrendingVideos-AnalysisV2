@@ -32,8 +32,23 @@ def searchPage():
 
         results = session.query(ytVideoStats).filter(
             ytVideoStats.title.like(f'%{querySearchForm}%')).all()
-
-        results_list = [row.title for row in results]
+#                                  <th>ID</th>
+#                                 <th>videoID</th> 
+#                                 <th>title</th> 
+#                                 <th>publishedAt</th>
+#                                 <th>channelID</th>  
+#                                 <th>description</th> 
+#                                 <th>channelTitle</th> 
+#                                 <th>categoryId</th> 
+#                                 <th>viewCount</th> 
+#                                 <th>likeCount</th> 
+#                                 <th>dislikeCount</th> 
+#                                 <th>favoriteCount</th> 
+#                                 <th>commentCount</th> 
+        print("Results: ", results)
+        results_list = [[row.videoID,row.title,row.publishedAt,row.channelID,\
+                        row.channelTitle,row.categoryId,row.viewCount,\
+                        row.likeCount, row.dislikeCount,row.favoriteCount,row.commentCount] for row in results]
         # // TODO: If all is well, take out test print statement from below
         print(results_list)
         return(render_template("index.html", output=results_list))

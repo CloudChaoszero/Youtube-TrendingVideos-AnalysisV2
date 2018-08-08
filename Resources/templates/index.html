@@ -1,6 +1,11 @@
 <html>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+<!-- <style type="text/CSS">
+table {
+    table-layout: fixed;
+    width: 100%;
+}
+</style> -->
 
 <body>
 
@@ -15,15 +20,44 @@
             <input type='submit'>
         </form></center>
         <div>
-
 </body>
 
-{% if output %} {% for entry in output %}
-<ul>
-    <li>{{entry }} </li>
-</ul>
-{% endfor %}
+{% if output %} 
 
+<table border="1">
+    <thead>
+        <tr>
+            
+                <th>videoID</th> 
+                <th>title</th> 
+                <th>publishedAt</th>
+                <th>channelID</th>  
+                <th>channelTitle</th> 
+                <th>categoryId</th> 
+                <th>viewCount</th> 
+                <th>likeCount</th> 
+                <th>dislikeCount</th> 
+                <th>favoriteCount</th> 
+                <th>commentCount</th> 
+        </tr>
+    </thead>
+    <tbody>
+        {% for record in output %}
+        <tr>
+            {% for col in record %}
+            <td>{{ col }}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<h1>Sorry, looks like that is not a keyword!</h1>
+{% endif %}
+
+
+{% if output %} 
+    "adsadsa"
 {% else %}
 <h1>Sorry, looks like that is not a keyword!</h1>
 {% endif %}
