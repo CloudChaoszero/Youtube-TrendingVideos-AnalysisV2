@@ -34,10 +34,13 @@ class ytVideoStats(Base):
     dislikeCount = Column(Integer)
     favoriteCount = Column(Integer)
     commentCount = Column(Integer)
+    RegionCode = Column(String)
+    Date = Column(String)
 
     def __repr__(self):
         return(f"<Youtube Video Information: Video Id: {self.videoID}, Title: {self.title}, Published At: {self.publishedAt},\
-        Channel ID: {self.channelID}, Description: {self.description}, Channel Title: {self.channelTitle}, Category ID: {self.categoryId}")
+        Channel ID: {self.channelID}, Description: {self.description}, Channel Title: {self.channelTitle}, Category ID: {self.categoryId},\
+        Region Code: {self.RegionCode}, Date: {self.Date}")
 
 
 engine = create_engine('sqlite:///database.sqlite')
@@ -66,7 +69,8 @@ for files in os.listdir("Data/"):
         for row in reader:
             ytVids = ytVideoStats(id=counter, videoID=row[1], title=row[2], publishedAt=row[3],
                                   channelID=row[4], description=row[5], channelTitle=row[6], categoryId=row[7],
-                                  viewCount=row[8], likeCount=row[9], dislikeCount=row[10], favoriteCount=row[11], commentCount=row[12])
+                                  viewCount=row[8], likeCount=row[9], dislikeCount=row[10], favoriteCount=row[11], commentCount=row[12],
+                                  RegionCode=row[13], Date=row[14])
             # Instance is pending. No SQL has been issued to object. To persist our object,
             # #we add it to our session
             session.add(ytVids)

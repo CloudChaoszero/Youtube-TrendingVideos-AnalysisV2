@@ -1,5 +1,12 @@
+<!DOCTYPE html>
 <html>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <head>
+        <title>Trending Videos Basic Information</title>
+    <link rel="icon" href="https://www.youtube.com/yt/about/media/images/brand-resources/icons/YouTube-icon-our_icon.png">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    </head>
 <!-- <style type="text/CSS">
 table {
     table-layout: fixed;
@@ -10,8 +17,8 @@ table {
 <body>
 
     <section>
-        <center><h1>Trending Videos Summary Table</h1></center>
-    <center><p>Observe the basic descriptive statistics of Trending Youtube videos.</p></center>
+        <center><h1>Trending Videos Summary Information</h1></center>
+    <center><p>Observe the basic attributes and descriptive statistics of Trending Youtube videos.</p></center>
     </section>
 
     <div><center>
@@ -21,9 +28,9 @@ table {
         </form></center>
         <div>
 </body>
+{% if output%} 
 
-{% if output %} 
-
+<p> Please search for a keyword! </p>
 <table border="1">
     <thead>
         <tr>
@@ -39,6 +46,8 @@ table {
                 <th>dislikeCount</th> 
                 <th>favoriteCount</th> 
                 <th>commentCount</th> 
+                <th>RegionCode</th>
+                <th>Date</th>
         </tr>
     </thead>
     <tbody>
@@ -52,14 +61,11 @@ table {
     </tbody>
 </table>
 {% else %}
-<h1>Sorry, looks like that is not a keyword!</h1>
+
+<p> Please enter a title keyword into the submission box. </p>
+<img src="https://i.imgflip.com/1h17po.jpg" alt="Finding" width="1100" height="1000"
+    border="0">
 {% endif %}
 
-
-{% if output %} 
-    "adsadsa"
-{% else %}
-<h1>Sorry, looks like that is not a keyword!</h1>
-{% endif %}
 
 </html>
