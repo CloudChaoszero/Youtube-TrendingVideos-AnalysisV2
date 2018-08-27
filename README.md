@@ -4,6 +4,8 @@ Table of Contents
 
 *   [Introduction](#introduction)
 
+*   [Project Demo](#demo)
+
 *   [Directory Infrastructure](#directory)
 
 *   [Resources](#resources)
@@ -31,6 +33,14 @@ based on user view counts
 Now, I would like to both answer the above questions, and so much more by emulating that past project. This emulation is done through development of some additional analysis, creating a streamline ETL process, app, and so much more.
 
 Enjoy!
+
+<a name = "demo"/>
+
+## Project Demo
+
+![Homepage](Resources/Images/homepage.png)
+
+![Database Seach](Resources/Images/searchDB.png)
 
 <a name = "directory"/>
 

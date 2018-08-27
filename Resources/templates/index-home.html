@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Trending Youtube Videos: An Analysis, and More</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Style the header */
+header {
+    background-color: black;
+    padding: 30px;
+    text-align: center;
+    width: 100%;
+    font-size: 35px;
+    color: white;
+}
+
+/* Container for flexboxes */
+section {
+    display: -webkit-flex;
+    display: flex;
+}
+
+/* Style the navigation menu */
+nav {
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    background: white;
+    padding: 20px;
+}
+
+/* Style the list inside the menu */
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+/* Style the content */
+article {
+    -webkit-flex: 3;
+    -ms-flex: 3;
+    flex: 3;
+    background-color: white;
+    padding: 10px;
+}
+
+/* Style the footer */
+footer {
+    background-color: #777;
+    padding: 10px;
+    text-align: center;header
+    color: white;
+}
+
+/* Responsive layout - makes the menu and the content (inside the section) sit on top of each other instead of next to each other */
+@media (max-width: 600px) {
+    section {
+      -webkit-flex-direction: column;
+      flex-direction: column;
+    }
+}
+</style>
+</head>
+<body>
+
+<section>
+      
+    <header>
+<h1>Trending Youtube Videos: An Analysis and More</h1>
+</header>
+
+</section>
+    <center>
+        <img src="https://www.youtube.com/yt/about/media/images/brand-resources/partners-advertisers/good-logo-icons.jpg" alt="OKayyy" width="550" height="200"
+    border="0">
+    </center>
+
+<p>This is a redux of my Youtube Analysis project back in January 2018.</p>
+
+<p>I utilizied Kaggle user Mitchell J's, Trending Youtube Video dataset to answer the following questions:<p>
+
+<p>What are the top 10 trending:<p>
+<ul>
+    <li>Youtube videos</li>
+    <li>Categories</li>
+    <li>Youtube Channels</li>
+based on user view counts
+</ul>
+
+<p>Now, I would like to both answer the above questions, and so much more by emulating that past project. This emulation is done through development of some additional analysis, creating a streamline ETL process, app, and so much more.</p>
+
+
+<section>
+  <nav>
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/search">Search Database</a></li>
+      <li><a href="/analytics">Analytics</a></li>
+      <li><a href="/password">Secret Password</a></li>
+      <li><a href="/query">Query</a></li>
+    </ul>
+  </nav>
+  
+  <article>
+    <h1>London</h1>
+    <p>London is the capital city of England. It is the most populous city in the  United Kingdom, with a metropolitan area of over 13 million inhabitants.</p>
+    <p>Standing on the River Thames, London has been a major settlement for two millennia, its history going back to its founding by the Romans, who named it Londinium.</p>
+  </article>
+</section>
+
+</body>
+</html>

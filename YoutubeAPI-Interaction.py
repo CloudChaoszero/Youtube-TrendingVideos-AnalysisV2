@@ -49,8 +49,11 @@ def acquireVideoInformation(videoID_list, apiKey, printout=None):
             rest2_in["snippet"]["channelTitle"])
         video_stats_dict["CategoryId"].append(
             rest2_in["snippet"]["categoryId"])
-        video_stats_dict["ViewCount"].append(
-            rest2_in["statistics"]["viewCount"])
+        try:
+            video_stats_dict["ViewCount"].append(
+                rest2_in["statistics"]["viewCount"])
+        except:
+            video_stats_dict["ViewCount"].append(0)
         try:
             video_stats_dict["LikeCount"].append(
                 rest2_in["statistics"]["likeCount"])
