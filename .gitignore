@@ -5,3 +5,5 @@ Resources/config.py
 
 *.sqlite
 __pycache__
+
+*.ipynb_checkpoints*
