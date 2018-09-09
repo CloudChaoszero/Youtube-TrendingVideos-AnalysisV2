@@ -1,126 +1,157 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<title>Trending Youtube Videos: An Analysis, and More</title>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-* {
-    box-sizing: border-box;
-}
+    <title>Trending Youtube Videos: An Analysis, and More</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
 
-body {
-    font-family: Arial, Helvetica, sans-serif;
-}
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
 
-/* Style the header */
-header {
-    background-color: black;
-    padding: 30px;
-    text-align: center;
-    width: 100%;
-    font-size: 35px;
-    color: white;
-}
+        /* Style the header */
 
-/* Container for flexboxes */
-section {
-    display: -webkit-flex;
-    display: flex;
-}
+        header {
+            background-color: black;
+            padding: 30px;
+            text-align: center;
+            width: 100%;
+            font-size: 35px;
+            color: white;
+        }
 
-/* Style the navigation menu */
-nav {
-    -webkit-flex: 1;
-    -ms-flex: 1;
-    flex: 1;
-    background: white;
-    padding: 20px;
-}
+        /* Container for flexboxes */
 
-/* Style the list inside the menu */
-nav ul {
-    list-style-type: none;
-    padding: 0;
-}
+        section {
+            display: -webkit-flex;
+            display: flex;
+        }
 
-/* Style the content */
-article {
-    -webkit-flex: 3;
-    -ms-flex: 3;
-    flex: 3;
-    background-color: white;
-    padding: 10px;
-}
+        /* Style the navigation menu */
 
-/* Style the footer */
-footer {
-    background-color: #777;
-    padding: 10px;
-    text-align: center;header
-    color: white;
-}
+        nav {
+            -webkit-flex: 1;
+            -ms-flex: 1;
+            flex: 1;
+            background: white;
+            padding: 20px;
+        }
 
-/* Responsive layout - makes the menu and the content (inside the section) sit on top of each other instead of next to each other */
-@media (max-width: 600px) {
-    section {
-      -webkit-flex-direction: column;
-      flex-direction: column;
-    }
-}
-</style>
+        /* Style the list inside the menu */
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        /* Style the content */
+
+        article {
+            -webkit-flex: 3;
+            -ms-flex: 3;
+            flex: 3;
+            background-color: white;
+            padding: 10px;
+        }
+
+        /* Style the footer */
+
+        footer {
+            background-color: #777;
+            padding: 10px;
+            text-align: center;
+            header color: white;
+        }
+
+        /* Responsive layout - makes the menu and the content (inside the section) sit on top of each other instead of next to each other */
+
+        @media (max-width: 600px) {
+            section {
+                -webkit-flex-direction: column;
+                flex-direction: column;
+            }
+        }
+    </style>
 </head>
+
 <body>
 
-<section>
-      
-    <header>
-<h1>Trending Youtube Videos: An Analysis and More</h1>
-</header>
+    <section>
 
-</section>
+        <header>
+            <h1>Trending Youtube Videos: An Analysis and More</h1>
+        </header>
+
+    </section>
     <center>
-        <img src="https://www.youtube.com/yt/about/media/images/brand-resources/partners-advertisers/good-logo-icons.jpg" alt="OKayyy" width="550" height="200"
-    border="0">
+        <img src="https://www.youtube.com/yt/about/media/images/brand-resources/partners-advertisers/good-logo-icons.jpg" alt="OKayyy"
+            width="550" height="200" border="0">
     </center>
 
-<p>This is a redux of <a href= "https://github.com/CloudChaoszero/Youtube-TrendsNMore">my Youtube Analysis project back in January 2018.</a></p>
+    <p>This is a redux of
+        <a href="https://github.com/CloudChaoszero/Youtube-TrendsNMore">my Youtube Analysis project back in January 2018.</a>
+    </p>
 
-<p>I utilizied Kaggle user Mitchell J's, Trending Youtube Video dataset to answer the following questions:<p>
+    <p>I utilizied Kaggle user Mitchell J's, Trending Youtube Video dataset to answer the following questions:
+        <p>
 
-<p>What are the top 10 trending:<p>
-<ul>
-    <li>Youtube videos</li>
-    <li>Categories</li>
-    <li>Youtube Channels</li>
-based on user view counts
-</ul>
+            <p>What are the top 10 trending:
+                <p>
+                    <ul>
+                        <li>Youtube videos</li>
+                        <li>Categories</li>
+                        <li>Youtube Channels</li>
+                    </ul>
+                    based on user view counts
+                    <p>Now, I would like to both answer the above questions, and so much more by emulating that past project.
+                        This emulation is done through development of some additional analysis, creating a streamline ETL
+                        process, app, and so much more.</p>
 
-<p>Now, I would like to both answer the above questions, and so much more by emulating that past project. This emulation is done through development of some additional analysis, creating a streamline ETL process, app, and so much more.</p>
 
+                    <section>
+                        <nav>
+                            <h1>Links</h1>
+                            <ul>
+                                <li>
+                                    <a href="/">Home</a>
+                                </li>
+                                <li>
+                                    <a href="/search">Search Database</a>
+                                </li>
+                                <li>
+                                    <a href="/analytics">Analytics</a>
+                                </li>
+                                <li>
+                                    <a href="/password">Secret Password</a>
+                                </li>
+                                <li>
+                                    <a href="/query">Query</a>
+                                </li>
+                            </ul>
+                        </nav>
 
-<section>
-  <nav>
-        <h1>Links</h1>
-    <ul>
-      <li><a href="/">Home</a></li>
-      <li><a href="/search">Search Database</a></li>
-      <li><a href="/analytics">Analytics</a></li>
-      <li><a href="/password">Secret Password</a></li>
-      <li><a href="/query">Query</a></li>
-    </ul>
-  </nav>
-  
-  <article>
-    <h1>Fun Facts</h1>
-    <ul>
-    <li>You can go to <a href = "https://www.youtube.com/feed/trending">https://www.youtube.com/feed/trending</a> to find what's trending</li>
-    <li> <a href = "https://www.statista.com/statistics/249396/top-youtube-videos-views/">The top trending video</a> to date was Despacito by Luis Fonsi ft. Daddy Yankee.</li>
-    <li>In 2018, just because you'll trend on Youtube, doesn't imply you will be instantly rich. Particularly, <a href="http://fortune.com/2018/02/27/youtube-success-poverty-wages/"> "96.5 percent of all of those trying to become YouTubers 
-        won’t make enough money off of advertising to crack the U.S. poverty line"</a></li>
-    </ul>
-    </article>
-</section>
+                        <article>
+                            <h1>Fun Facts</h1>
+                            <ul>
+                                <li>You can go to
+                                    <a href="https://www.youtube.com/feed/trending">https://www.youtube.com/feed/trending</a> to find what's trending</li>
+                                <li>
+                                    <a href="https://www.statista.com/statistics/249396/top-youtube-videos-views/">The top trending video</a> to date was Despacito by Luis Fonsi ft. Daddy Yankee.</li>
+                                <li>In 2018, just because you'll trend on Youtube, doesn't imply you will be instantly rich.
+                                    Particularly,
+                                    <a href="http://fortune.com/2018/02/27/youtube-success-poverty-wages/">
+                                    "96.5 percent of all of those trying to become YouTubers won’t make enough money off
+                                        of advertising to crack the U.S. poverty line"</a>
+                                </li>
+                            </ul>
+                        </article>
+                    </section>
 
 </body>
+
 </html>

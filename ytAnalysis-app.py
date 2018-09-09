@@ -1,6 +1,6 @@
 # Flask and SQLAlchemy Dependencies
 from flask import Flask, render_template, redirect, request
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, func
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy import inspect
 from sqlalchemy.orm import Session
@@ -28,10 +28,11 @@ app = Flask(__name__, template_folder="Resources/templates")
 def homepage():
     return(render_template('index-home.html'))
 
-@app.route("/demo")
-def demo():
-    return('''<h1>Welcome! :D </h1> <img src="https://i.kym-cdn.com/photos/images/newsfeed/000/415/209/3b4.png" alt="OKayyy" width="1100" height="1000"
-    border="0">''')
+@app.route("/analytics")
+def analytics():
+    analytics_results = {}
+    analytics_results["StatsByCategoryID"] = session.query(ytVideoStats, func.count(ytVideoStats.viewCount)).group_by(ytVideoStats.categoryId).all()
+    return(str(analytics_results))
 
 @app.route("/search", methods=['GET', 'POST'])
 def searchPage():
