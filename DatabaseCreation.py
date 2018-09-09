@@ -1,8 +1,6 @@
 '''
-* Instatiate Youtube Video Summary Statistics Database.
-* By Raul Maldonado
-* 2018
-
+Instatiating database via SQLAlchemy
+by Raul Maldonado
 '''
 
 from sqlalchemy import create_engine
@@ -13,6 +11,7 @@ from sqlalchemy.orm import sessionmaker
 import csv
 import os
 
+#Decalarative Base class definition used for producing object representation of table, and handle lf abstraction between the two
 Base = declarative_base()
 
 
@@ -44,16 +43,14 @@ engine = create_engine('sqlite:///database.sqlite')
 ytVideoStats.__table__.drop(engine)
 Base.metadata.create_all(engine, checkfirst=True)
 
+# sessionmaker handles mapped objects to database
 Session = sessionmaker(bind=engine)
 session = Session()
 
-
 '''
-* For each csv file, add the information to the intermediate table.
-* Thereafter, flush the data into the database by commiting.
-* Repeat until all folder's files have been covered.
+For each file, get open a csv and add the information to the intermediate table.
+commit the file, and then go through to the next file
 '''
-
 counter = 0
 for files in os.listdir("Data/"):
 
