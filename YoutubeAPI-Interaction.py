@@ -5,42 +5,49 @@ import os
 import sys
 sys.path.insert(0, os.path.join("Resources"))
 
-print(1)
-os.system('python DatabaseCreation.py')
-
+#API Congfiguration Key
 from config import api_key
 
-
+#Get Regions for their respective Trending Video List
 regionCode_list = ["at", "ch", "cn", "dk", "is", "be", "fr", "is",
                    "mx", "us", "kr", "nl", "nz", "jp", "ru", "vn"]
 
-# Get Video Ids for each Region Code
+# Get Trending Video Ids for each Region Code
 urlRequest_regionCodeList_forVideoIDs = [
-    f"https://www.googleapis.com/youtube/v3/videos?part=statistics&chart=mostPopular&regionCode={regCode.upper()}&maxResults=25&key=" + api_key for regCode in regionCode_list]
+        "https://www.googleapis.com/youtube/v3/videos?part=statistics&" + 
+        f"chart=mostPopular&regionCode={regCode.upper()}&maxResults=25&key=" 
+        + api_key for regCode in regionCode_list]
 
-
+#API Call.
 def getAPIResponse(url_string):
     try:
         resp = requests.get(url_string)
         return([resp, resp.json()])
     except:
-        print("Error from request. Check URL link or ensure have correct API key")
+        print("Request Error. Check URL link or ensure have correct API key")
 
 
+#From Response object, get each video's ID.
 def getVideoIds(response_object):
     response = response_object[1]
     listOf_trendingVideo_ids = [i["id"] for i in response["items"]]
     return(listOf_trendingVideo_ids)
 
-
+#Obtain Each Video's Statistics and Information.
 def acquireVideoInformation(videoID_list, apiKey, printout=None):
-    video_stats_dict = {"VideoID": [], "Title": [], "PublishedAt": [], "ChannelID": [], "Description": [], "ChannelTitle": [], "CategoryId": [],
-                        "ViewCount": [], "LikeCount": [], "DislikeCount": [], "FavoriteCount": [], "CommentCount": []}
+    video_stats_dict = {"VideoID": [], "Title": [], "PublishedAt": [], 
+                        "ChannelID": [], "Description": [], "ChannelTitle": [],
+                        "CategoryId": [], "ViewCount": [], "LikeCount": [], 
+                        "DislikeCount": [], "FavoriteCount": [], "CommentCount": []}
+    
     for video_id in videoID_list:
+
+        #Youtube API call for statistics
         response_videoInfo = requests.get(
-            f"https://www.googleapis.com/youtube/v3/videos?id={video_id}&key={apiKey}&part=snippet,statistics").json()
+            f"https://www.googleapis.com/youtube/v3/videos?id={video_id}&" + 
+            f"key={apiKey}&part=snippet,statistics").json()
         rest2_in = response_videoInfo["items"][0]
-        # print(rest2_in)
+
         video_stats_dict["VideoID"].append(video_id)
         video_stats_dict["Title"].append(rest2_in["snippet"]["title"])
         video_stats_dict["PublishedAt"].append(
@@ -111,7 +118,7 @@ def outputToDataFrame(information):
     '''
     return(DataFrame(information))
 
-
+#For each key and piece of information
 for key, info in trendingVideos_information.items():
     vidStats_df = outputToDataFrame(info[2])
     vidStats_df["RegionCode"] = [key.upper()
@@ -119,19 +126,3 @@ for key, info in trendingVideos_information.items():
     vidStats_df["Date"] = [
         f"{month}/{day}/{year}" for i in range(vidStats_df.shape[0])]
     vidStats_df.to_csv(f"Data/YoutubeVideoStats-{key}-{month}{day}{year}.csv")
-
-
-# // TODO:  Do a sql alchemy version. Once that is complete, then
-# // TODO: This is where we create database if it does not exist. If it does, just add new information
-
-
-'''
-If I put this code in a sqlalchemy file, then code will run, and database will always be inputted.
-
-
-but if I make this seperate, and have one file call this file annnnd sqlalchemy file, then I can keep an app running
-
-
-For app:
-if some collection of files does not exist in repository, then run operations
-'''
