@@ -10,6 +10,8 @@ Table of Contents
 
 *   [Resources](#resources)
 
+*   [Google Cloud Deployment](#GCP)
+
 <a name = "introduction"/>
 
 ## Introduction
@@ -72,3 +74,19 @@ Contact information:
 * [LinkedIn](https://www.linkedin.com/in/raulm8/)
 
 * [rmaldonadocloud@outlook.com](mailto:rmaldonadocloud@outlook.com)
+
+<a name = "GCP"/>
+
+## Google Cloud Deployment
+
+`gcloud app deploy`
+
+## Running Locally
+
+If using Flask 0.12.4 or below, use;
+
+`python3 ytAnalysis-app.py`
+
+If using Flask > 0.12.4 or above, use:
+
+`FLASK_APP=ytAnalysis-app.py flask run`
