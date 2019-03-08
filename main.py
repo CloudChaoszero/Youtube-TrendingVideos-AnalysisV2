@@ -17,7 +17,7 @@ Base.prepare(engine, reflect=True)
 
 session = Session(engine)
 ytVideoStats = Base.classes.youtube_videoStats
-print(ytVideoStats)
+
 '''
 * Instantiate Flask object with all template resources in certain location (default always lies in templates/)
     * Homepage instantiated at route "/". Receives text/html related items to render to webpage
@@ -41,9 +41,10 @@ def analytics():
 def searchPage():
     resultsNone = [  ["" for i in range(13)] for j in range(1) ]
     if request.method == "POST":
-        querySearchForm = request.form["text"]
-        print(querySearchForm)
-        results = session.query(ytVideoStats).filter(ytVideoStats.title.like(f'%{querySearchForm}%')).all()
+        querySearchForm = request.form['text']
+
+        results = session.query(ytVideoStats).filter(
+            ytVideoStats.title.like(f'%{querySearchForm}%')).all()
         print("Results: ", results)
         results_list = [[row.videoID,row.title,row.publishedAt,row.channelID,\
                         row.channelTitle,row.categoryId,row.viewCount,\
