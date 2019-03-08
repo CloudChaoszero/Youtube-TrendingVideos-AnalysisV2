@@ -40,7 +40,7 @@ class ytVideoStats(Base):
 
 # Return value is instance of Engine API to connect and work with database
 engine = create_engine('sqlite:///database.sqlite')
-ytVideoStats.__table__.drop(engine)
+# ytVideoStats.__table__.drop(engine)
 Base.metadata.create_all(engine, checkfirst=True)
 
 # sessionmaker handles mapped objects to database
@@ -52,6 +52,12 @@ For each file, get open a csv and add the information to the intermediate table.
 commit the file, and then go through to the next file
 '''
 counter = 0
+
+# If Data folder does not exist, create it.
+if os.path.exists('Data') is False:
+    print("Creating Data Directory. :)")
+    os.makedirs("Data")   
+
 for files in os.listdir("Data/"):
 
     with open(f'Data/{files}', 'r') as csvfile:
