@@ -1,6 +1,10 @@
 # Youtube Trending Video Analysis
 
-Table of Contents
+![Preview](Resources/Images/preview_application.png)
+
+by [Raul Maldonado](https://www.linkedin.com/in/raulm8/)
+
+**Table of Contents**
 
 *   [Introduction](#introduction)
 
@@ -10,8 +14,10 @@ Table of Contents
 
 *   [Resources](#resources)
 
-*   [Google Cloud Deployment](#GCP)
+*   [Deployments](#Deployments)
 
+    *   [Google Cloud Deployment](#GCP) 
+    *   [Local Deployment](#local)
 <a name = "introduction"/>
 
 ## Introduction
@@ -40,9 +46,18 @@ Enjoy!
 
 ## Project Demo
 
+### Version 1 (2018)
+
+**Homepage**
+
 ![Homepage](Resources/Images/homepage.png)
 
-![Database Seach](Resources/Images/searchDB.png)
+**Database Search**
+
+![Database Search](Resources/Images/searchDB.png)
+
+### Version 1 (2018)
+
 
 <a name = "directory"/>
 
@@ -73,20 +88,29 @@ Contact information:
 
 * [LinkedIn](https://www.linkedin.com/in/raulm8/)
 
-* [rmaldonadocloud@outlook.com](mailto:rmaldonadocloud@outlook.com)
+* [rmaldonadocloud@gmail.com](mailto:rmaldonadocloud@gmail.com)
+
+<a name = "Deployments"/>
+
+## Deployments
 
 <a name = "GCP"/>
 
-## Google Cloud Deployment
+### Google Cloud Deployment
 
-`gcloud app deploy`
+1. Create requirements.txt file
+2. Create app.yaml file
+3. `gcloud app deploy`
+Note: This version uses `main.py` instead of `ytAnalysis-app.py`
 
-## Running Locally
+<a name = "local"/>
 
-If using Flask 0.12.4 or below, use;
+### Running Locally
+
+* If using Flask 0.12.4 or below, use;
 
 `python3 ytAnalysis-app.py`
 
-If using Flask > 0.12.4 or above, use:
+* If using Flask > 0.12.4 or above, use:
 
 `FLASK_APP=ytAnalysis-app.py flask run`
