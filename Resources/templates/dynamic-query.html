@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Trending Videos Basic Information</title>
+    <link rel="icon" href="https://www.youtube.com/yt/about/media/images/brand-resources/icons/YouTube-icon-our_icon.png">
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ url_for('static', filename='stylesheets/stylesheet.css') }}">
+
+</head>
+
+<body>
+
+    <header class="inner"  style="background-color: black;
+    padding: 30px;
+    text-align: center;
+    width: 100%;
+    font-size: 35px;
+    color: white; ! important">
+        <h1>Trending Youtube Videos: Query</h1>
+    </header>
+
+
+    <div id="main_content_wrap" class="outer">
+            <center>
+                    <p>Query the Trending Youtube videos database!</p>
+                </center>
+          
+        <section id="main_content" class="inner">
+                        <div class="container">
+                                <nav>
+                                        <h1>Directory</h1>
+                                        <ul>
+                                            <li>
+                                                <a href="/">Home</a>
+                                            </li>
+                                            <li>
+                                                <a href="/search">Search the Database</a>
+                                            </li>
+                                            <li>
+                                                    <a href="/query">Query the Database</a>
+                                            </li>
+                                            <li>
+                                                <a href="/analytics">Database Insights</a>
+                                            </li>
+                                            <li>
+                                                <a href="/password">The Super Secret Password</a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+
+    <div>
+        <center>
+            <form method='POST'>
+                <textarea name='text' rows="5" cols="30" placeholder="Please enter a query for table youtube_videoStats.">SELECT *  &#10; FROM youtube_videoStats &#10; LIMIT 1
+                </textarea>
+                <input type='submit'  >
+            </form>
+        </center>
+    </div>
+    </div>
+    </section>
+</div>
+</body>
+{% if output%}
+
+<p> <strong>Tablename:</strong> youtube_videoStats </p>
+<p> <strong>Note:</strong> The dialect for this query is SQLite</p>
+
+<table border="1">
+    <thead>
+        <tr>
+        {% for record in output[0] %}
+            <th>
+                {{ record }}
+            </th>
+        {% endfor %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for record in output[1:] %}
+        <tr>
+            {% for col in record %}
+            <td>{{ col }}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+
+<p> Tablename: youtube_videoStats! </p>
+<center><img src="https://i.imgflip.com/1h17po.jpg" alt="Finding" width="200" height="200" border="0">
+</center>
+{% endif %}
+
+
+</html>

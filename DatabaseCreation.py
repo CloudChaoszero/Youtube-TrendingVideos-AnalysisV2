@@ -41,10 +41,10 @@ class ytVideoStats(Base):
     Date = Column(String)
 
     def __repr__(self):
-        return(f"<Youtube Video Information: Video Id: {self.videoID}, " + \
+        return(f"<Youtube Video Information: Video Id: {self.videoID}, " + 
         f"Title: {self.title}, Published At: {self.publishedAt}, " + \
-        f"Channel ID: {self.channelID}, Description: {self.description}, " + \ 
-        f"Channel Title: {self.channelTitle}, Category ID: {self.categoryId}, " + \
+        f"Channel ID: {self.channelID}, Description: {self.description}, " + 
+        f"Channel Title: {self.channelTitle}, Category ID: {self.categoryId}, " + 
         f"Region Code: {self.RegionCode}, Date: {self.Date}")
 
 # Return value is instance of Engine API to connect and work with database

@@ -2,97 +2,40 @@
 <html lang="en">
 
 <head>
-    <title>Trending Youtube Videos: An Analysis, and More</title>
-    <meta charset="utf-8">
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ url_for('static', filename='stylesheets/stylesheet.css') }}">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style>
-        * {
-            box-sizing: border-box;
-        }
 
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-        }
-
-        /* Style the header */
-
-        header {
-            background-color: black;
-            padding: 30px;
-            text-align: center;
-            width: 100%;
-            font-size: 35px;
-            color: white;
-        }
-
-        /* Container for flexboxes */
-
-        section {
-            display: -webkit-flex;
-            display: flex;
-        }
-
-        /* Style the navigation menu */
-
-        nav {
-            -webkit-flex: 1;
-            -ms-flex: 1;
-            flex: 1;
-            background: white;
-            padding: 20px;
-        }
-
-        /* Style the list inside the menu */
-
-        nav ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        /* Style the content */
-
-        article {
-            -webkit-flex: 3;
-            -ms-flex: 3;
-            flex: 3;
-            background-color: white;
-            padding: 10px;
-        }
-
-        /* Style the footer */
-
-        footer {
-            background-color: #777;
-            padding: 10px;
-            text-align: center;
-            header color: white;
-        }
-
-        /* Responsive layout - makes the menu and the content (inside the section) sit on top of each other instead of next to each other */
-
-        @media (max-width: 600px) {
-            section {
-                -webkit-flex-direction: column;
-                flex-direction: column;
-            }
-        }
-    </style>
 </head>
 
 <body>
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
 
-    <section>
-
-        <header>
+        <header class="inner"  style="background-color: black;
+        padding: 30px;
+        text-align: center;
+        width: 100%;
+        font-size: 35px;
+        color: white; ! important">
             <h1>Trending Youtube Videos: Overview</h1>
         </header>
 
-    </section>
+    </div> 
+
+    <div id="main_content_wrap" class="outer">
+                <h1>Welcome!</h1>
+          
+        <section id="main_content" class="inner">
+                        <div class="container">
     <center>
         <img src="https://www.youtube.com/yt/about/media/images/brand-resources/partners-advertisers/good-logo-icons.jpg"
             alt="OKayyy" width="550" height="250" border="0">
     </center>
-
+    </div>
     <p>This is a redux of
         <a href="https://github.com/CloudChaoszero/Youtube-TrendsNMore">my Youtube Analysis project back in January
             2018</a>,
@@ -104,26 +47,23 @@
         </ul>
     </p>
 
-
-
-    <section>
         <nav>
-            <h1>Links</h1>
+            <h1>Directory</h1>
             <ul>
                 <li>
                     <a href="/">Home</a>
                 </li>
                 <li>
-                    <a href="/search">Search Database</a>
+                    <a href="/search">Search the Database</a>
                 </li>
                 <li>
-                    <a href="/analytics">Analytics</a>
+                        <a href="/query">Query the Database</a>
                 </li>
                 <li>
-                    <a href="/password">Secret Password</a>
+                    <a href="/analytics">Database Insights</a>
                 </li>
                 <li>
-                    <a href="/query">Query</a>
+                    <a href="/password">The Super Secret Password</a>
                 </li>
             </ul>
         </nav>
@@ -146,7 +86,7 @@
             </ul>
         </article>
     </section>
-
+    </div>
 </body>
 
 </html>
