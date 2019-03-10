@@ -2,12 +2,18 @@
 Data/*
 Resources/__pycache__/*
 Resources/config.py
+
+#Ignore Demo Tableau Data
 Resources/TableauData/*
+**videos.csv
+**category_id.json
 
+
+#Ignore database deployment
 *.sqlite
+
+# Misc.
 __pycache__
-
 *.ipynb_checkpoints*
-
 *.pyc
 **.DS_Store
