@@ -77,10 +77,11 @@
         </tr>
     </thead>
     <tbody>
+
         {% for record in output[1:] %}
         <tr>
             {% for col in record %}
-            <td>{{ col }}</td>
+                    <td>{{col}}</td>
             {% endfor %}
         </tr>
         {% endfor %}
