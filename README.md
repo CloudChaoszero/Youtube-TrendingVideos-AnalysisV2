@@ -1,8 +1,10 @@
 # Youtube Trending Video Analysis
 
-![Preview](Resources/Images/preview_application.png)
+[![Preview](Resources/Images/preview_application.png)](https://personal-machine-230918.appspot.com/)
 
 by [Raul Maldonado](https://www.linkedin.com/in/raulm8/)
+
+[Click here to see the deployment via #GCP](https://personal-machine-230918.appspot.com/)
 
 **Table of Contents**
 
@@ -18,6 +20,7 @@ by [Raul Maldonado](https://www.linkedin.com/in/raulm8/)
 
     *   [Google Cloud Deployment](#GCP) 
     *   [Local Deployment](#local)
+    
 <a name = "introduction"/>
 
 ## Introduction
@@ -97,6 +100,8 @@ Contact information:
 <a name = "GCP"/>
 
 ### Google Cloud Deployment
+
+![Funny Cloud](https://media1.tenor.com/images/1063ab3459f3e1752f7775a19b0620be/tenor.gif)
 
 1. Create requirements.txt file
 2. Create app.yaml file
