@@ -2,6 +2,7 @@
 Data/*
 Resources/__pycache__/*
 Resources/config.py
+Resources/TableauData/*
 
 *.sqlite
 __pycache__
