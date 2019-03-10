@@ -33,11 +33,12 @@ def homepage():
 
 @app.route("/analytics")
 def analytics():
-    analytics_results = {}
-    analytics_results["StatsByCategoryID"] = session.query(ytVideoStats, \
-        func.count(ytVideoStats.viewCount)).group_by(ytVideoStats.categoryId).all()
-    return(str(analytics_results))
-
+    ##First Idea (deprecated):
+    # analytics_results = {}
+    # analytics_results["StatsByCategoryID"] = session.query(ytVideoStats, \
+    #     func.count(ytVideoStats.viewCount)).group_by(ytVideoStats.categoryId).all()
+    #return(str(analytics_results))
+    return(render_template('analytics.html'))
 @app.route("/search", methods=['GET', 'POST'])
 def searchPage():
     resultsNone = [  ["" for i in range(13)] for j in range(1) ]
@@ -55,10 +56,23 @@ def searchPage():
     return(render_template("index.html", output =resultsNone))
     
 
-@app.route("/query")
+@app.route("/query", methods=['GET', 'POST'])
+#youtube_videoStats table
 def query():
-
-    return("Test Query")
+    resultsNone = []
+    if request.method == "POST":
+        querySearchForm = request.form["text"]
+       
+        try:
+            results_object = engine.execute(querySearchForm)
+            results_column = tuple(results_object.keys())
+            results = results_object.fetchall()
+            results.insert(0, results_column)
+        except:
+            results = []
+        results_list = results
+        return(render_template("dynamic-query.html", output=results_list))
+    return(render_template("dynamic-query.html", output =resultsNone))
 
 @app.route("/password")
 def password():
